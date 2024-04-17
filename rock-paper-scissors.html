@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let choices = ["rock", "paper", "scissors"];
+        let z = "";
+
+        function getComputerChoice() {
+            let randomChoice = Math.floor(Math.random() * 3);
+            z = choices[randomChoice];
+            return z;
+        }
+
+        let x = "";
+
+	function getUserChoice() {
+	    x = prompt("Choose: rock, paper, scissors");
+	    x = x.toLowerCase();
+	    return x;
+	}
+
+        let y = "";
+
+        function playRound(x, y) {
+            y = getComputerChoice();
+	    x = getUserChoice();
+            console.log(y);
+            console.log(x);
+            if (x === y) {
+                return "It's a draw";
+             } else if (x === "rock" && y === "scissors" || x === "scissors" && y === "paper" || x === "paper" && y === "rock") {
+                return "You win!";
+             } else {
+                return "You lose! It's all on you!"
+             }
+        }
+
+    </script>
+
+</body>
+</html>
