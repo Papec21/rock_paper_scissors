@@ -6,41 +6,100 @@
     <title>Document</title>
 </head>
 <body>
+
+    <button id="rock">ROCK</button>
+    <button id="paper">PAPER</button>
+    <button id="scissors">SCISSORS</button>
+
+    <br>
+    <div>Player Score:</div>
+    <div id="playerScore"></div>
+    <br>
+    <div>Computer Score:</div>
+    <div id="computerScore"></div>
+
+
     
     <script>
-        let choices = ["rock", "paper", "scissors"];
+        const rock = document.querySelector("#rock");
+        const paper = document.querySelector("#paper");
+        const scissors = document.querySelector("#scissors");
+        const score = document.querySelector("#score");
+
+        let playerScore = 0;
+        let computerScore = 0;
+
+        rock.addEventListener("click", () => {
+            x = "rock";
+            playRound(x, y);
+            updateScore();
+        });
+
+        paper.addEventListener("click", () => {
+            x = "paper";
+            playRound(x, y);
+            updateScore();
+        });
+
+        scissors.addEventListener("click", () => {
+            x = "scissors";
+            playRound(x, y);
+            updateScore();
+        });
+
+        const choices = ["rock", "paper", "scissors"];
         let z = "";
 
         function getComputerChoice() {
-            let randomChoice = Math.floor(Math.random() * 3);
+            const randomChoice = Math.floor(Math.random() * 3);
             z = choices[randomChoice];
             return z;
         }
 
         let x = "";
 
-	function getUserChoice() {
-	    x = prompt("Choose: rock, paper, scissors");
-	    x = x.toLowerCase();
-	    return x;
-	}
+//	function getUserChoice() {
+//	    x = prompt("Choose: rock, paper, scissors");
+//	    x = x.toLowerCase();
+//	    return x;
+//	}
 
         let y = "";
 
         function playRound(x, y) {
             y = getComputerChoice();
-	    x = getUserChoice();
+
+	      //  x = getUserChoice();
             console.log(y);
             console.log(x);
             if (x === y) {
                 return "It's a draw";
              } else if (x === "rock" && y === "scissors" || x === "scissors" && y === "paper" || x === "paper" && y === "rock") {
+                playerScore++;
                 return "You win!";
              } else {
+                computerScore++;
                 return "You lose! It's all on you!"
              }
         }
 
+
+        function updateScore() {
+            const playerScorePara = document.querySelector("#playerScore");
+            const computerScorePara = document.querySelector("#computerScore");
+
+            playerScorePara.textContent =  `${playerScore}`;
+            computerScorePara.textContent = `${computerScore}`;
+
+            if (playerScore >= 5) {
+                playerScorePara.textContent = "PLAYER WON!";
+            } else if (computerScore >= 5) {
+                computerScorePara.textContent = "COMPUTER WON!";
+            } else {
+                pass;
+            }
+        }
+        
     </script>
 
 </body>
